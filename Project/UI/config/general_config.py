@@ -1,4 +1,5 @@
 import flet as ft
+from Project.UI.components.custom_routing import screens_handler
 
 def general_config(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
@@ -10,4 +11,7 @@ def general_config(page: ft.Page):
     page.window_min_height = 600
     page.title = "TODO APP"
     page.window_center()
+
+
+
 
