@@ -1,21 +1,32 @@
 import flet as ft
 
+from Project.UI.components.custom_appbar import CustomAppBar
 from Project.UI.screens.new_task_screen import NewTaskScreen
+from Project.UI.screens.update_task_screen import UpdateTaskScreen
+from Project.UI.screens.home_screen import HomeScreen
 
-def screens_handler(page: ft.Page):
+
+def screens_handler(page):
     return {
         '/': ft.View(
             route='/',
+            appbar=CustomAppBar,
             controls=[
-                NewTaskScreen(page)
+                HomeScreen(page).build(),
             ]
         ),
-        '/segunda': ft.View(
-            route='/segunda',
+        '/new-task': ft.View(
+            route='/new-task',
+            appbar=CustomAppBar,
             controls=[
-                ft.Container(
-                    content=ft.Text("segunda pagina")
-                )
+                NewTaskScreen(page).build(),
+            ]
+        ),
+        '/update-task': ft.View(
+            route='/update-task',
+            appbar=CustomAppBar,
+            controls=[
+                UpdateTaskScreen(page).build(),
             ]
         ),
     }
