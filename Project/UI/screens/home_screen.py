@@ -1,19 +1,15 @@
-import flet as ft
+from flet import Column, Text, ElevatedButton, Page
 
-from Project.UI.components.custom_appbar import CustomAppBar
+def HomeScreen(page: Page):
+    screen = Column(
+        spacing= 50,
+        controls = [
+            Text("Bienvenido a la app de tareas"),
+            ElevatedButton(
+                text="Ingresar",
+                on_click=lambda _: page.go('/new-task')
+            )
+        ]
+    )
 
-class HomeScreen:
-
-    def __init__(self, page):
-        super().__init__()
-        self.page = page
-
-    def build(self):
-        return ft.Column(
-            controls=[
-                ft.Text("Home Screen"),
-                ft.ElevatedButton(
-                    on_click=lambda _: self.page.go("/new-task"),
-                )
-            ],
-        )
+    return screen

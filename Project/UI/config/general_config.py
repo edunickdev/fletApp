@@ -1,5 +1,7 @@
 import flet as ft
-from Project.UI.components.custom_routing import screens_handler
+
+from Project.UI.components.custom_appbar import CustomAppBar
+from Project.UI.components.custom_routing import Router
 
 def general_config(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
@@ -11,6 +13,18 @@ def general_config(page: ft.Page):
     page.window_min_height = 600
     page.title = "TODO APP"
     page.window_center()
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+
+    page.appbar = CustomAppBar
+    myRoutes = Router(page)
+    
+    page.on_route_change = myRoutes.route_change
+    
+    page.add(
+        myRoutes.body,
+    )
+
 
 
 
