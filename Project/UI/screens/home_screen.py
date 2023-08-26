@@ -1,13 +1,22 @@
-from flet import Column, Text, ElevatedButton, Page
+from flet import Column, Text, ElevatedButton, Page, MainAxisAlignment, CrossAxisAlignment
 
 def HomeScreen(page: Page):
     screen = Column(
-        spacing= 50,
+        alignment=MainAxisAlignment.CENTER,
+        horizontal_alignment=CrossAxisAlignment.CENTER,
+        spacing= 30,
         controls = [
-            Text("Bienvenido a la app de tareas"),
+            Text(
+                "Bienvenido a la app gestora de tareas",
+                size= 30,
+                text_align= "center",
+                overflow= "ellipsis",
+                max_lines= 2,
+            ),
             ElevatedButton(
                 text="Ingresar",
-                on_click=lambda _: page.go('/new-task')
+                on_click=lambda _: page.go('/new-task'),
+                width= 200,
             )
         ]
     )

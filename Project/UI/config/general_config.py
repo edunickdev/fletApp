@@ -11,10 +11,12 @@ def general_config(page: ft.Page):
     page.window_min_width = 600
     page.window_max_height = 600
     page.window_min_height = 600
+    page.window_resizable = False
     page.title = "TODO APP"
     page.window_center()
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.scroll = False
 
     page.appbar = CustomAppBar
     myRoutes = Router(page)
