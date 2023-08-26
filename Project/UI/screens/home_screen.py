@@ -7,7 +7,7 @@ def HomeScreen(page: Page):
         spacing= 30,
         controls = [
             Text(
-                "Bienvenido a la app gestora de tareas",
+                "Bienvenido \n app gestor de tareas",
                 size= 30,
                 text_align= "center",
                 overflow= "ellipsis",

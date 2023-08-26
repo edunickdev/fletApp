@@ -1,6 +1,7 @@
 import flet as ft
 
 from Project.UI.components.custom_appbar import CustomAppBar
+from Project.UI.components.custom_floating_button import CustomFloatingButton
 from Project.UI.components.custom_routing import Router
 
 def general_config(page: ft.Page):
@@ -17,14 +18,16 @@ def general_config(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.scroll = False
-
+    page.floating_action_button = CustomFloatingButton(page)
     page.appbar = CustomAppBar
     myRoutes = Router(page)
     
     page.on_route_change = myRoutes.route_change
     
     page.add(
-        myRoutes.body,
+        ft.SafeArea(
+            myRoutes.body,
+        )
     )
 
 
