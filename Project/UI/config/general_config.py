@@ -20,6 +20,7 @@ def general_config(page: ft.Page):
     page.scroll = False
     page.floating_action_button = CustomFloatingButton(page)
     page.appbar = CustomAppBar
+    page.snack_bar = ft.SnackBar( content=ft.Text("sin mensajes que mostrar"))
     myRoutes = Router(page)
     
     page.on_route_change = myRoutes.route_change

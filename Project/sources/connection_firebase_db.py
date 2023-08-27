@@ -1,7 +1,7 @@
 import os
 import firebase_admin
 from firebase_admin import credentials, db
-from models.task import Task
+from Project.sources.models.task import Task
 
 # Configuración de las credenciales
 ruta_actual  = os.getcwd()
@@ -30,21 +30,20 @@ def add_data(colection: str, data: Task):
 
 # Referencia a la colección "task"
 task_ref = ref.child('task')
-print(f'lista de tareas {task_ref.get()}')
 
 # Obtener un snapshot de los datos en "task"
 snapshot = task_ref.get()
 
 # Iterar a través de los datos y mostrarlos
-for key, value in snapshot.items():
-    print(f'ID: {key}')
-    print(f'Titulo tarea: {value["title"]}')
-    print(f'Fecha Inicio: {value["start"]}')
-    print(f'Fecha Fin: {value["end"]}')
-    print(f'Descripción: {value["description"]}')
-    print(f'Categoría: {value["category"]}')
-    print(f'Sugerencia GPT: {value["suggestGPT"]}')
-    print('---------------------------')
+# for key, value in snapshot.items():
+#     print(f'ID: {key}')
+#     print(f'Titulo tarea: {value["title"]}')
+#     print(f'Fecha Inicio: {value["start"]}')
+#     print(f'Fecha Fin: {value["end"]}')
+#     print(f'Descripción: {value["description"]}')
+#     print(f'Categoría: {value["category"]}')
+#     print(f'Sugerencia GPT: {value["suggestGPT"]}')
+#     print('---------------------------')
 
 
-add_data('task', data)
+# add_data('task', data)
