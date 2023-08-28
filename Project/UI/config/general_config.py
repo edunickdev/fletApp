@@ -6,10 +6,10 @@ from Project.UI.components.custom_routing import Router
 
 def general_config(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
-    page.window_width = 600
+    page.window_width = 900
     page.window_height = 600
-    page.window_max_width = 600
-    page.window_min_width = 600
+    page.window_max_width = 900
+    page.window_min_width = 900
     page.window_max_height = 600
     page.window_min_height = 600
     page.window_resizable = False
@@ -30,8 +30,5 @@ def general_config(page: ft.Page):
             myRoutes.body,
         )
     )
-
-
-
 
 
