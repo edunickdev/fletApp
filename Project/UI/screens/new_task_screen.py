@@ -1,5 +1,6 @@
 import time
-from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAxisAlignment, ElevatedButton, Text, Dropdown, dropdown, SnackBar, IconButton
+
+from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAxisAlignment, ElevatedButton, Text, Dropdown, dropdown, SnackBar, IconButton, ProgressBar
 from Project.ChatGPT.conexion import sugerencias_chatGPT
 from Project.sources.connection_firebase_db import add_data
 
@@ -16,15 +17,15 @@ new_task: Task = {
      "suggestGPT": "",
 }
 
-inputTitulo = TextField( prefix_icon=icons.TASK, width=305, label="Título de la tarea" )
-fechaInicial = TextField( prefix_icon=icons.DATE_RANGE, width=150, label="Fecha inicial", hint_text="DD/MM/AAAA" )
-fechaFinal = TextField( prefix_icon=icons.DATE_RANGE, width=150, label="Fecha final", hint_text="DD/MM/AAAA" )
-inputDescripcion = TextField( width=410, max_length=140, border_radius=10, prefix_icon=icons.DESCRIPTION, label="Objetivo de la tarea", max_lines=4 )
+inputTitulo = TextField( prefix_icon=icons.TASK, width=340, label="Título de la tarea" )
+fechaInicial = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha inicial", hint_text="DD/MM/AAAA" )
+fechaFinal = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha final", hint_text="DD/MM/AAAA" )
+inputDescripcion = TextField( width=400, max_length=140, border_radius=10, prefix_icon=icons.DESCRIPTION, label="Objetivo de la tarea", max_lines=4 )
 GPT_sugerencias = Text( value="Generar sugerencias de ChatGPT 3.5", size=14, max_lines=7 , overflow="ellipsis", width=390 )
 
 def generarSugerencias(self):
      if not inputDescripcion.value:
-          GPT_sugerencias.value = "Para poder generar sugerencias con ChatGPT, la descripción de la tarea no puede estar vacia vacia"
+          GPT_sugerencias.value = "Para poder generar sugerencias con ChatGPT, el campo objetivo de la tarea no puede estar vacio"
           self.page.update()
           time.sleep(8)
           GPT_sugerencias.value = "Generar sugerencias de ChatGPT 3.5"
@@ -34,7 +35,7 @@ def generarSugerencias(self):
           self.page.update()
 
 dropdownCategory = Dropdown(
-     width=305,
+     width=340,
      label="Categoría de la tarea", 
      prefix_icon=icons.CATEGORY,
      options=[
@@ -67,6 +68,10 @@ def NewTaskScreen(page: Page):
                dropdownCategory.error_text = "Este campo no puede ir vacio"
           else:
                new_task["category"] = dropdownCategory.value
+               if new_task["suggestGPT"] != "":
+                    new_task["suggestGPT"] = GPT_sugerencias.value
+               else:
+                    new_task["suggestGPT"] = "El usuario no genero sugerencias con ChatGPT"
 
           if inputTitulo.error_text or fechaInicial.error_text or fechaFinal.error_text or inputDescripcion.error_text or dropdownCategory.error_text:
                clearFields()
@@ -91,6 +96,7 @@ def NewTaskScreen(page: Page):
           fechaFinal.value = ""
           inputDescripcion.value = ""
           dropdownCategory.value = ""
+          GPT_sugerencias.value = "Generar sugerencias de ChatGPT 3.5"
 
      def clearErrors():
           time.sleep(3)
@@ -116,12 +122,12 @@ def NewTaskScreen(page: Page):
                          ]
                     ),
                     Row(
-                         alignment=MainAxisAlignment.SPACE_EVENLY,
+                         alignment=MainAxisAlignment.CENTER,
                          vertical_alignment=CrossAxisAlignment.START,
                          controls=[
                               Column(
                                    spacing=20,
-                                   width=310,
+                                   width=350,
                                    controls=[
                                         Row(
                                              alignment = MainAxisAlignment.CENTER,
@@ -150,15 +156,16 @@ def NewTaskScreen(page: Page):
                                    controls=[
                                         Row(
                                              alignment = MainAxisAlignment.CENTER,
+                                             vertical_alignment = CrossAxisAlignment.CENTER,
                                              controls=[
-                                                  inputDescripcion
+                                                  inputDescripcion,
+                                                  IconButton( icon=icons.CONFIRMATION_NUM, on_click=generarSugerencias )
                                              ]
                                         ),
                                         Row(
                                              alignment = MainAxisAlignment.CENTER,
                                              controls=[
                                                   GPT_sugerencias,
-                                                  IconButton( icon=icons.BATTERY_CHARGING_FULL, on_click=generarSugerencias )
                                              ]
                                         )
                                    ]
