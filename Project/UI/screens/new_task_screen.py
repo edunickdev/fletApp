@@ -8,15 +8,7 @@ from Project.sources.models.task import Task
 
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
 iconCategories = [icons.WORK, icons.BOOK, icons.WEEKEND, icons.FAMILY_RESTROOM, icons.PERSON]
-new_task: Task = {
-     "title": "",
-     "category": "",
-     "start_date": "",
-     "end_date": "",
-     "description": "",
-     "suggestGPT": "",
-}
-
+new_task: Task = Task(  )
 inputTitulo = TextField( prefix_icon=icons.TASK, width=340, label="Título de la tarea" )
 fechaInicial = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha inicial", hint_text="DD/MM/AAAA" )
 fechaFinal = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha final", hint_text="DD/MM/AAAA" )
