@@ -11,8 +11,8 @@ class Task:
     def to_dict(self):
         return {
             'title': self.title,
-            'start': self.start,
-            'end': self.end,
+            'start_date': self.start,
+            'end_date': self.end,
             'description': self.description,
             'category': self.category,
             'suggestGPT': self.suggestGPT
