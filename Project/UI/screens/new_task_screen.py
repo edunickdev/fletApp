@@ -1,11 +1,12 @@
 import time
+from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAxisAlignment, ElevatedButton, Text, Dropdown, dropdown, SnackBar, IconButton
 
-from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAxisAlignment, ElevatedButton, Text, Dropdown, dropdown, SnackBar, IconButton, ProgressBar
 from Project.ChatGPT.conexion import sugerencias_chatGPT
 from Project.sources.connection_firebase_db import add_data
-
 from Project.sources.models.task import Task
 
+
+new_task = Task("", "", "", "", "", "")
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
 iconCategories = [icons.WORK, icons.BOOK, icons.WEEKEND, icons.FAMILY_RESTROOM, icons.PERSON]
 new_task = Task( "", "", "", "", "", "" )
@@ -39,7 +40,7 @@ dropdownCategory = Dropdown(
 def NewTaskScreen(page: Page):
 
      def save_task(self):
-
+          
           if not inputTitulo.value:
                inputTitulo.error_text = "Este campo no puede ir vacio"
           else:
@@ -63,7 +64,7 @@ def NewTaskScreen(page: Page):
                if new_task.suggestGPT != "Generar sugerencias de ChatGPT 3.5" or new_task.suggestGPT != "Para poder generar sugerencias con ChatGPT, el campo objetivo de la tarea no puede estar vacio":
                     new_task.suggestGPT = GPT_sugerencias.value
                else:
-                    new_task.suggestGPT = "El usuario no genero sugerencias con ChatGPT"
+                    new_task["suggestGPT"] = "El usuario no genero sugerencias con ChatGPT"
 
           if inputTitulo.error_text or fechaInicial.error_text or fechaFinal.error_text or inputDescripcion.error_text or dropdownCategory.error_text:
                clearFields()
