@@ -8,7 +8,7 @@ from Project.sources.models.task import Task
 
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
 iconCategories = [icons.WORK, icons.BOOK, icons.WEEKEND, icons.FAMILY_RESTROOM, icons.PERSON]
-new_task: Task = Task(  )
+new_task = Task( "", "", "", "", "", "" )
 inputTitulo = TextField( prefix_icon=icons.TASK, width=340, label="Título de la tarea" )
 fechaInicial = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha inicial", hint_text="DD/MM/AAAA" )
 fechaFinal = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha final", hint_text="DD/MM/AAAA" )
@@ -43,27 +43,27 @@ def NewTaskScreen(page: Page):
           if not inputTitulo.value:
                inputTitulo.error_text = "Este campo no puede ir vacio"
           else:
-               new_task["title"] = inputTitulo.value
+               new_task.title = inputTitulo.value
           if not fechaInicial.value:
                fechaInicial.error_text = "Este campo no puede ir vacio"
           else:
-               new_task["start_date"] = fechaInicial.value
+               new_task.start = fechaInicial.value
           if not fechaFinal.value:
                fechaFinal.error_text = "Este campo no puede ir vacio"
           else:
-               new_task["end_date"] = fechaFinal.value
+               new_task.end = fechaFinal.value
           if not inputDescripcion.value:
                inputDescripcion.error_text = "Este campo no puede ir vacio"
           else:     
-               new_task["description"] = inputDescripcion.value
+               new_task.description = inputDescripcion.value
           if not dropdownCategory.value:
                dropdownCategory.error_text = "Este campo no puede ir vacio"
           else:
-               new_task["category"] = dropdownCategory.value
-               if new_task["suggestGPT"] != "":
-                    new_task["suggestGPT"] = GPT_sugerencias.value
+               new_task.category = dropdownCategory.value
+               if new_task.suggestGPT != "Generar sugerencias de ChatGPT 3.5" or new_task.suggestGPT != "Para poder generar sugerencias con ChatGPT, el campo objetivo de la tarea no puede estar vacio":
+                    new_task.suggestGPT = GPT_sugerencias.value
                else:
-                    new_task["suggestGPT"] = "El usuario no genero sugerencias con ChatGPT"
+                    new_task.suggestGPT = "El usuario no genero sugerencias con ChatGPT"
 
           if inputTitulo.error_text or fechaInicial.error_text or fechaFinal.error_text or inputDescripcion.error_text or dropdownCategory.error_text:
                clearFields()
@@ -72,12 +72,12 @@ def NewTaskScreen(page: Page):
                self.page.update()
                return
           else:
-               add_data('task', new_task)
+               add_data('task', new_task.to_dict())
                print("Nueva Tarea guardada")
                clearFields()
                self.page.update()
-               page.snack_bar = SnackBar( content=Text("Tarea guardada con éxito"), duration= 6000 )
-               page.snack_bar.open = True
+               self.page.snack_bar = SnackBar( content=Text("Tarea guardada con éxito"), duration= 6000 )
+               self.page.snack_bar.open = True
                self.page.update()
                return
 
