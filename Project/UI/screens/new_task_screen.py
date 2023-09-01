@@ -6,7 +6,6 @@ from Project.sources.connection_firebase_db import add_data
 from Project.sources.models.task import Task
 
 
-new_task = Task("", "", "", "", "", "")
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
 iconCategories = [icons.WORK, icons.BOOK, icons.WEEKEND, icons.FAMILY_RESTROOM, icons.PERSON]
 new_task = Task( "", "", "", "", "", "" )

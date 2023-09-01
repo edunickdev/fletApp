@@ -15,35 +15,44 @@ firebase_admin.initialize_app(
 ref = db.reference('/')
 
 # Datos para agregar a la base de datos
-data: Task = {
-    'title': 'Tarea 8',
-    'start': '2023-08-21',
-    'end': '2023-08-28',
-    'description': 'Cenar con Roxi',
-    'category': 'Daily',
-    'suggestGPT': 'Tarea 8'
-}
+# data: Task = {
+#     'title': 'Tarea 8',
+#     'start_date': '2023-08-21',
+#     'end_date': '2023-08-28',
+#     'description': 'Cenar con Roxi',
+#     'category': 'Daily',
+#     'suggestGPT': 'Tarea 8'
+# }
 
-# Agregar datos a la colección "task"
+# # Agregar datos a la colección "task"
 def add_data(colection: str, data: Task):
     ref.child(colection).push(data)
 
 # Referencia a la colección "task"
-task_ref = ref.child('task')
+# task_ref = ref.child('task')
 
 # Obtener un snapshot de los datos en "task"
-snapshot = task_ref.get()
+# snapshot = task_ref.get()
+
+def get_data(colection: str):
+    colection_data = ref.child(colection)
+    data = colection_data.get()
+    return data
+
+# db_tasks = get_data('task')
+
 
 # Iterar a través de los datos y mostrarlos
 # for key, value in snapshot.items():
-#     print(f'ID: {key}')
-#     print(f'Titulo tarea: {value["title"]}')
-#     print(f'Fecha Inicio: {value["start"]}')
-#     print(f'Fecha Fin: {value["end"]}')
-#     print(f'Descripción: {value["description"]}')
-#     print(f'Categoría: {value["category"]}')
-#     print(f'Sugerencia GPT: {value["suggestGPT"]}')
-#     print('---------------------------')
+#     pass
+    # print(f'ID: {key}')
+    # print(f'Titulo tarea: {value["title"]}')
+    # print(f'Fecha Inicio: {value["start_date"]}')
+    # print(f'Fecha Fin: {value["end_date"]}')
+    # print(f'Descripción: {value["description"]}')
+    # print(f'Categoría: {value["category"]}')
+    # print(f'Sugerencia GPT: {value["suggestGPT"]}')
+    # print('---------------------------')
 
 
 # add_data('task', data)

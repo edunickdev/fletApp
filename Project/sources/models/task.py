@@ -17,3 +17,4 @@ class Task:
             'category': self.category,
             'suggestGPT': self.suggestGPT
         }
+        

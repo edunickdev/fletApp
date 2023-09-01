@@ -15,7 +15,7 @@ def HomeScreen(page: Page):
             ),
             ElevatedButton(
                 text="Ingresar",
-                on_click=lambda _: page.go('/new-task'),
+                on_click=lambda _: page.go('/principal'),
                 width= 200,
             )
         ]
