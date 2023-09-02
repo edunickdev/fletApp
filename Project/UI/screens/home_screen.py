@@ -4,8 +4,8 @@ def HomeScreen(page: Page):
     screen = Column(
         alignment=MainAxisAlignment.CENTER,
         horizontal_alignment=CrossAxisAlignment.CENTER,
-        spacing= 30,
-        controls = [
+        spacing=60,
+        controls=[
             Text(
                 "Bienvenido \n app gestor de tareas",
                 size= 30,

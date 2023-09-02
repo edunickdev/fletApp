@@ -1,4 +1,4 @@
-from flet import Page, Container, alignment
+from flet import Page, Container, alignment, Column
 
 from Project.UI.screens.general_screen import GeneralScreen
 from Project.UI.screens.new_task_screen import NewTaskScreen
@@ -16,7 +16,7 @@ class Router:
         }
         self.body = Container(
             alignment= alignment.center,
-            content= self.routes['/'],
+            content=self.routes['/'],
         )
 
     def route_change(self, route):
