@@ -8,5 +8,6 @@ def main(page: Page):
     general_config(page)
 
     page.go('/')
+    page.update()
 
 app( target=main )

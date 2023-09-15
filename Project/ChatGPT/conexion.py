@@ -1,6 +1,11 @@
 import openai
 
-openai.api_key = "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"
+# from Project.ChatGPT.lector_credenciales import cargar_credenciales
+from lector_credenciales import cargar_credenciales
+
+credentials = cargar_credenciales()
+
+openai.api_key = credentials['api_key']
 
 def sugerencias_chatGPT(prompt):
     try:

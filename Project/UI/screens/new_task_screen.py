@@ -2,8 +2,9 @@ import time
 from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAxisAlignment, ElevatedButton, Text, Dropdown, dropdown, SnackBar, IconButton
 
 from Project.ChatGPT.conexion import sugerencias_chatGPT
-from Project.sources.connection_firebase_db import add_data, get_data
+from Project.sources.connection_firebase_db import add_data
 from Project.sources.models.task import Task
+from Project.UI.screens.general_screen import buildTiles
 
 
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
@@ -78,7 +79,7 @@ def NewTaskScreen(page: Page):
                self.page.snack_bar = SnackBar( content=Text("Tarea guardada con éxito"), duration= 6000 )
                self.page.snack_bar.open = True
                self.page.update()
-               get_data('task')
+               self.page.go("/principal")
                return
 
 
