@@ -4,7 +4,6 @@ from Project.sources.connection_firebase_db import get_data
 
 def buildTiles(page: Page):
     task_list = get_data('task')
-    print(task_list)
 
     my_ListTiles = []
     for key, value in task_list.items():
@@ -32,12 +31,12 @@ def buildTiles(page: Page):
                 )
             )
     
+    page.update()
     return my_ListTiles
 
 
 def GeneralScreen(page: Page):
     tiles = buildTiles(page)
-    page.clean()
     page.scroll = True
     screen = Column(
                 alignment=MainAxisAlignment.CENTER,
@@ -54,4 +53,3 @@ def GeneralScreen(page: Page):
     page.update()
     return screen
 
-# pyinstaller --add-data "Project/sources/bdflet-firebase-adminsdk-mdm4q-0b51280ea8.json;Project/sources/" .\main.py

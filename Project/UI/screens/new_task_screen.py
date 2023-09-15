@@ -4,7 +4,7 @@ from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAx
 from Project.ChatGPT.conexion import sugerencias_chatGPT
 from Project.sources.connection_firebase_db import add_data
 from Project.sources.models.task import Task
-from Project.UI.screens.general_screen import buildTiles
+from Project.UI.screens.general_screen import GeneralScreen, buildTiles
 
 
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
@@ -73,6 +73,7 @@ def NewTaskScreen(page: Page):
                return
           else:
                add_data('task', new_task.to_dict())
+               
                print("Nueva Tarea guardada")
                clearFields()
                self.page.update()

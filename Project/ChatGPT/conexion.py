@@ -1,7 +1,7 @@
 import openai
 
-# from Project.ChatGPT.lector_credenciales import cargar_credenciales
-from lector_credenciales import cargar_credenciales
+from Project.ChatGPT.lector_credenciales import cargar_credenciales
+# from lector_credenciales import cargar_credenciales
 
 credentials = cargar_credenciales()
 
