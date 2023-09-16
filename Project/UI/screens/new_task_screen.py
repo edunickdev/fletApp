@@ -4,7 +4,6 @@ from flet import Page, Column, TextField, icons, MainAxisAlignment, Row, CrossAx
 from Project.ChatGPT.conexion import sugerencias_chatGPT
 from Project.sources.connection_firebase_db import add_data
 from Project.sources.models.task import Task
-from Project.UI.screens.general_screen import GeneralScreen, buildTiles
 
 
 categories = ["Trabajo", "Estudio", "Ócio", "Familiar", "Personal"]
@@ -13,7 +12,7 @@ inputTitulo = TextField( prefix_icon=icons.TASK, width=340, label="Título de la
 fechaInicial = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha inicial", hint_text="DD/MM/AAAA" )
 fechaFinal = TextField( prefix_icon=icons.DATE_RANGE, width=165, label="Fecha final", hint_text="DD/MM/AAAA" )
 inputDescripcion = TextField( width=400, max_length=140, border_radius=10, prefix_icon=icons.DESCRIPTION, label="Objetivo de la tarea", max_lines=4 )
-GPT_sugerencias = Text( value="Generar sugerencias de ChatGPT 3.5", size=14, max_lines=7 , overflow="ellipsis", width=390 )
+GPT_sugerencias = Text( value="Generar sugerencias de ChatGPT 3.5", size=14, max_lines=7, overflow="ellipsis", width=390 )
 
 def generarSugerencias(self):
      if not inputDescripcion.value:
@@ -73,8 +72,6 @@ def NewTaskScreen(page: Page):
                return
           else:
                add_data('task', new_task.to_dict())
-               
-               print("Nueva Tarea guardada")
                clearFields()
                self.page.update()
                self.page.snack_bar = SnackBar( content=Text("Tarea guardada con éxito"), duration= 6000 )

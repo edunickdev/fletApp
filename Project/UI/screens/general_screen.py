@@ -2,8 +2,9 @@ from flet import Page, Column, ListTile, Text, Icon, icons, IconButton, MainAxis
 
 from Project.sources.connection_firebase_db import get_data
 
-def buildTiles(page: Page):
-    task_list = get_data('task')
+task_list = get_data('task')
+
+def buildTiles(task_list):
 
     my_ListTiles = []
     for key, value in task_list.items():
@@ -31,12 +32,9 @@ def buildTiles(page: Page):
                 )
             )
     
-    page.update()
     return my_ListTiles
 
-
 def GeneralScreen(page: Page):
-    tiles = buildTiles(page)
     page.scroll = True
     screen = Column(
                 alignment=MainAxisAlignment.CENTER,
@@ -45,7 +43,7 @@ def GeneralScreen(page: Page):
                     Column(
                         scroll=ScrollMode.AUTO,
                         controls=[
-                            tile for tile in tiles
+                            tile for tile in buildTiles(task_list)
                         ]
                     ),
                 ]
