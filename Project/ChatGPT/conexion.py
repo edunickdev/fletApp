@@ -9,14 +9,20 @@ openai.api_key = credentials['api_key']
 
 def sugerencias_chatGPT(prompt):
     try:
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt= f"{prompt}, dame las sugerencias en máximo 100 tokens.",
-            max_tokens=120,
+        response = openai.chat.completions.create (
+            max_tokens=150,
             temperature=0.7,
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    'content': prompt,
+                    'role': 'user'
+                }
+            ]
         )
-        return response.choices[0].text.strip()
-
+        answer = response.choices[0].message.content
+        return answer
+    
     except Exception as e:
         return f"Error: {str(e)}"
 
