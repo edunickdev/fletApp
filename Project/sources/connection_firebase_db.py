@@ -5,10 +5,10 @@ from Project.sources.models.task import Task
 
 # Configuración de las credenciales
 ruta_actual  = os.getcwd()
-access = credentials.Certificate("Project/sources/bdflet-firebase-adminsdk-mdm4q-0b51280ea8.json")
+access = credentials.Certificate("Project/sources/bdflet-56a12-firebase-adminsdk-nlgsb-7dfdd8293a.json")
 firebase_admin.initialize_app(
     access,
-    { "databaseURL": "https://bdflet-default-rtdb.firebaseio.com/" }
+    { "databaseURL": "https://bdflet-56a12-default-rtdb.firebaseio.com/" }
 )
 
 # Referencia a la raíz de la base de datos
