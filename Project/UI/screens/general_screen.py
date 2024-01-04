@@ -1,10 +1,10 @@
-from flet import Page, Column, ListTile, Text, Icon, icons, IconButton, MainAxisAlignment, ScrollMode, ElevatedButton
+from flet import Page, Column, ListTile, Text, Icon, icons, IconButton, MainAxisAlignment, ScrollMode, ElevatedButton, Row
 
 from Project.sources.connection_firebase_db import get_data
 
-task_list = get_data('task')
 
-def buildTiles(task_list):
+def GeneralScreen(page: Page):
+    task_list = get_data('task')
 
     my_ListTiles = []
     for key, value in task_list.items():
@@ -13,7 +13,7 @@ def buildTiles(task_list):
         elif value['category'] == 'Trabajo':
             value['icon'] = icons.WORK
         elif value['category'] == 'Estudio':
-            value['icon'] = icons.BOOK
+            value['icon'] = icons.BOOK 
         elif value['category'] == 'Ócio':
             value['icon'] = icons.WEEKEND
         elif value['category'] == 'Familiar':
@@ -31,20 +31,22 @@ def buildTiles(task_list):
                     ),
                 )
             )
-    
-    return my_ListTiles
+        
+    # print(f"mi lista de tareas luego de pasar por el for {my_ListTiles}")
 
-def GeneralScreen(page: Page):
     page.scroll = True
     screen = Column(
                 alignment=MainAxisAlignment.CENTER,
                 controls=[
-                    ElevatedButton( 'Nueva tarea', on_click=lambda _: page.go('/new-task') ),
+                    Row(
+                        controls=[
+                            ElevatedButton( 'Nueva tarea', on_click=lambda _: page.go('/new-task') ),
+                            ElevatedButton( 'Actualizar', on_click="" )
+                        ]
+                    ),
                     Column(
                         scroll=ScrollMode.AUTO,
-                        controls=[
-                            tile for tile in buildTiles(task_list)
-                        ]
+                        controls=[ tile for tile in my_ListTiles ]
                     ),
                 ]
             )
